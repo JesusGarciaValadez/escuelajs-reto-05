@@ -14,6 +14,10 @@ if (storage.getItem('next_fetch')) {
   storage.removeItem('next_fetch')
 }
 
+/**
+ *
+ * @param api
+ */
 const getData = api => {
   fetch(api)
     .then(response => response.json())
@@ -49,6 +53,10 @@ const getData = api => {
     .catch(error => console.log(error));
 }
 
+/**
+ *
+ * @returns {Promise<void>}
+ */
 const loadData = async () => {
   if (!storage.getItem('next_fetch')) {
     await getData(API);
@@ -58,6 +66,10 @@ const loadData = async () => {
   await getData(storage.getItem('next_fetch'));
 }
 
+/**
+ * 
+ * @type {IntersectionObserver}
+ */
 const intersectionObserver = new IntersectionObserver(entries => {
   if (entries[0].isIntersecting) {
     loadData();

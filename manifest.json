@@ -1,35 +1,35 @@
 {
-  "name": "PWA Linio Store",
-  "short_name": "PWA Linio",
-  "description": "A test using pwa technologies from Google to improve performance for Linio.",
+  "name": "PWA Rick & Morty",
+  "short_name": "PWA Rick & Morty",
+  "description": "A test using pwa technologies from Google to improve performance for Rick & Morty API client.",
   "lang": "es-ES",
-  "start_url": "/index.html?utm_source=homescreen",
-  "scope": "/pwa-linio-demo/app/",
+  "start_url": "/public/index.html?utm_source=homescreen",
+  "scope": "/",
   "display": "standalone",
   "theme_color": "#f50",
   "icons": [
     {
-      "src": "assets/img/touch/icon-128x128.png",
+      "src": "public/assets/img/touch/icon-128x128.png",
       "sizes": "128x128",
       "type": "image/png"
     },
     {
-      "src": "assets/img/touch/apple-touch-icon.png",
+      "src": "public/assets/img/touch/apple-touch-icon.png",
       "sizes": "152x152",
       "type": "image/png"
     },
     {
-      "src": "assets/img/touch/ms-touch-icon-144x144-precomposed.png",
+      "src": "public/assets/img/touch/ms-touch-icon-144x144-precomposed.png",
       "sizes": "144x144",
       "type": "image/png"
     },
     {
-      "src": "assets/img/touch/chrome-touch-icon-192x192.png",
+      "src": "public/assets/img/touch/chrome-touch-icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "assets/img/touch/icon-512x512.png",
+      "src": "public/assets/img/touch/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
