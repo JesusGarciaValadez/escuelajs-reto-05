@@ -35,7 +35,7 @@ npm run start
 ```javascript
 const $app = document.getElementById('app');
 const $observe = document.getElementById('observe');
-const API = 'https://rickandmortyapi.com/api/character/';
+const API = 'https://us-central1-escuelajs-api.cloudfunctions.net/characters';
 ```
 
 Función llamada 'getData' que se encarga de hacer Fetch a una API y construye un elemento nuevo en el DOM.
@@ -85,6 +85,17 @@ const intersectionObserver = new IntersectionObserver(entries => {
 intersectionObserver.observe($observe);
 ```
 
+# Service Worker
+Se encarga de cachear gran parte de los assets estáticos o externos.
+
+```
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js')
+    .catch(error => {
+      console.error(error);
+    });
+}
+```
 
 ## RETO
 
