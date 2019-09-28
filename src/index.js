@@ -1,6 +1,13 @@
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js')
+    .catch(error => {
+      console.error(error);
+    });
+}
+
 const $app = document.getElementById('app');
 const $observe = document.getElementById('observe');
-const API = 'https://rickandmortyapi.com/api/character/';
+const API = 'https://us-central1-escuelajs-api.cloudfunctions.net/characters';
 const storage = window.localStorage;
 
 if (storage.getItem('next_fetch')) {
@@ -28,11 +35,11 @@ const getData = api => {
       const characters = response.results;
       let output = characters.map(character => {
         return `
-      <article class="Card">
-        <img src="${character.image}" />
-        <h2>${character.name}<span>${character.species}</span></h2>
-      </article>
-    `
+            <article class="Card">
+              <img src="${character.image}" />
+                <h2>${character.name}<span>${character.species}</span></h2>
+            </article>
+        `
       }).join('');
       let newItem = document.createElement('section');
       newItem.classList.add('Items');
