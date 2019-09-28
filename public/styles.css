@@ -45,6 +45,13 @@ body {
   justify-content: space-between;
 }
 
+.Output {
+  color: red;
+  font-size: 1.2em;
+  line-height: 1.2em;
+  text-align: center;
+}
+
 @keyframes fade {
   from {
     opacity: 0;

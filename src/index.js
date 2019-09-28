@@ -11,7 +11,20 @@ const getData = api => {
   fetch(api)
     .then(response => response.json())
     .then(response => {
+      if (!response.info.next) {
+        intersectionObserver.disconnect();
+
+        let output = `Ya no hay personajes...`;
+        let newItem = document.createElement('p');
+        newItem.classList.add('Output');
+        newItem.innerText = output;
+        $app.appendChild(newItem);
+
+        return;
+      }
+
       storage.setItem('next_fetch', response.info.next);
+
       const characters = response.results;
       let output = characters.map(character => {
         return `
