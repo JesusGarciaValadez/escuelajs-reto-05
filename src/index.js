@@ -3,6 +3,10 @@ const $observe = document.getElementById('observe');
 const API = 'https://rickandmortyapi.com/api/character/';
 const storage = window.localStorage;
 
+if (storage.getItem('next_fetch')) {
+  storage.removeItem('next_fetch')
+}
+
 const getData = api => {
   fetch(api)
     .then(response => response.json())
