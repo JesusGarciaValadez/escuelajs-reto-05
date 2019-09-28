@@ -1,11 +1,16 @@
 const $app = document.getElementById('app');
 const $observe = document.getElementById('observe');
 const API = 'https://rickandmortyapi.com/api/character/';
+const storage = window.localStorage;
 
 const getData = api => {
   fetch(api)
     .then(response => response.json())
     .then(response => {
+      storage.setItem('next_fetch', response.info.next);
+      if (storage.getItem('next_fetch')) {
+        console.log(storage.getItem('next_fetch'));
+      }
       const characters = response.results;
       let output = characters.map(character => {
         return `
