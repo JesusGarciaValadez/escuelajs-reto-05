@@ -8,9 +8,6 @@ const getData = api => {
     .then(response => response.json())
     .then(response => {
       storage.setItem('next_fetch', response.info.next);
-      if (storage.getItem('next_fetch')) {
-        console.log(storage.getItem('next_fetch'));
-      }
       const characters = response.results;
       let output = characters.map(character => {
         return `
@@ -28,8 +25,13 @@ const getData = api => {
     .catch(error => console.log(error));
 }
 
-const loadData = () => {
-  getData(API);
+const loadData = async () => {
+  if (!storage.getItem('next_fetch')) {
+    await getData(API);
+    return;
+  }
+
+  await getData(storage.getItem('next_fetch'));
 }
 
 const intersectionObserver = new IntersectionObserver(entries => {
