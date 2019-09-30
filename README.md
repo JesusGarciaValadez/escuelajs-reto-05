@@ -35,7 +35,7 @@ npm run start
 ```javascript
 const $app = document.getElementById('app');
 const $observe = document.getElementById('observe');
-const API = 'https://us-central1-escuelajs-api.cloudfunctions.net/characters';
+const API = 'https://rickandmortyapi.com/api/character/';
 ```
 
 Función llamada 'getData' que se encarga de hacer Fetch a una API y construye un elemento nuevo en el DOM.
