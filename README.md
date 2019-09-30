@@ -86,15 +86,67 @@ intersectionObserver.observe($observe);
 ```
 
 # Service Worker
-Se encarga de cachear gran parte de los assets estáticos o externos.
+Se encarga de cachear gran parte de los assets estáticos o externos. No se requiere nada más para la instalación del 
+Service Worker, excepto un navegador moderno que sea capáz de ejecutar el Service Worker en su API.
 
-```
+``` /src/index.js
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js')
     .catch(error => {
       console.error(error);
     });
 }
+```
+
+Se importa un script de Google que se encarga de manejar el registro y manejo del Service Worker. Una vez importado el 
+script, se especifica que tipo de recursos van a ser cacheados, y se agrupan por nombres específicos. Los recursos 
+serán cacheados una vez que sean cargados en el navegador, haciéndolos disponibles aún offline.
+
+``` /sw.js
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.1.1/workbox-sw.js');
+
+workbox.precaching.precacheAndRoute([]);
+
+workbox.routing.registerRoute(
+    /\.(?:png|gif|jpg|jpeg|svg)$/,
+    new workbox.strategies.CacheFirst({
+        cacheName: 'images',
+        plugins: [
+            new workbox.expiration.Plugin({
+                maxEntries: 10,
+                maxAgeSeconds: 30 * 24 * 60 * 60, // 30 Days
+            }),
+        ],
+    })
+);
+
+workbox.routing.registerRoute(
+    /\/$/,
+    new workbox.strategies.StaleWhileRevalidate({
+        cacheName: 'static-resources',
+    })
+);
+
+workbox.routing.registerRoute(
+    /\.(?:js|html|css|json)$/,
+    new workbox.strategies.StaleWhileRevalidate({
+        cacheName: 'static-resources',
+    })
+);
+
+workbox.routing.registerRoute(
+    /^https\:\/\/rickandmortyapi\.com\/*(.*)$/,
+    new workbox.strategies.StaleWhileRevalidate({
+        cacheName: 'rickandmortyapi-resources',
+    })
+);
+
+workbox.routing.registerRoute(
+    /.*(?:googleapis|gstatic)\.com/,
+    new workbox.strategies.StaleWhileRevalidate({
+        cacheName: 'google-resources',
+    }),
+);
 ```
 
 ## RETO
