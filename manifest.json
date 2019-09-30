@@ -2,9 +2,11 @@
   "name": "PWA Rick & Morty",
   "short_name": "PWA Rick & Morty",
   "description": "A test using pwa technologies from Google to improve performance for Rick & Morty API client.",
-  "lang": "es-ES",
-  "start_url": "/public/index.html?utm_source=homescreen",
+  "lang": "es-MX",
+  "dir": "ltr",
+  "start_url": "./?utm_source=homescreen",
   "scope": "/",
+  "orientation": "portrait",
   "display": "standalone",
   "theme_color": "#f50",
   "icons": [
@@ -34,5 +36,10 @@
       "type": "image/png"
     }
   ],
-  "background_color": "#fff"
+  "background_color": "#fff",
+  "related_applications": [{
+    "platform": "web",
+    "url": "http://127.0.0.1:8080/public/"
+  }],
+  "prefer_related_applications": false
 }
