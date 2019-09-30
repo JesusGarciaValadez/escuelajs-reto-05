@@ -32,23 +32,23 @@ workbox.routing.registerRoute(
 );
 
 workbox.routing.registerRoute(
-    /\.(?:js|css)$/,
+    /\/$/,
     new workbox.strategies.StaleWhileRevalidate({
         cacheName: 'static-resources',
     })
 );
 
 workbox.routing.registerRoute(
-    /^https\:\/\/us\-central1\-escuelajs\-api\.cloudfunctions\.net\/*(.*)$/,
+    /\.(?:js|html|css|json)$/,
     new workbox.strategies.StaleWhileRevalidate({
-        cacheName: 'cloudfunctions-resources',
+        cacheName: 'static-resources',
     })
 );
 
 workbox.routing.registerRoute(
-    /.*(?:amazonaws)\.com\/$/,
+    /^https\:\/\/rickandmortyapi\.com\/*(.*)$/,
     new workbox.strategies.StaleWhileRevalidate({
-        cacheName: 'aws-resources',
+        cacheName: 'rickandmortyapi-resources',
     })
 );
 
